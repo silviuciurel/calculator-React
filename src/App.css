@@ -22,9 +22,7 @@
   align-items: center;
 }
 
-.keyboard {
-  display: flex;
-}
+
 
 .calculator {
   width: 22.5rem;
@@ -35,43 +33,4 @@
   flex-wrap: wrap;
 }
 
-.display {
-  height: 5rem;
-  width: 100%;
-  text-align: right;
-  padding: 0.625rem;
-  font-size: 2rem;
-}
 
-button {
-  font-family: 'Orbitron Light';
-  border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
-  margin: 0.3125rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-button:focus {
-  outline: none;
-}
-
-button.clear,
-button.zero {
-  border-radius: 3.125rem;
-  width: 10.625rem;
-}
-
-button.equals {
-  border-radius: 3.125rem;
-  height: 10.625rem;
-}
