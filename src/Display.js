@@ -8,7 +8,7 @@ class Display extends Component {
     render() {
         return (
             <div id="display" className="display">
-                2+5+3*5
+                {this.props.display}
             </div>
         );
     }
