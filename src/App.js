@@ -10,8 +10,7 @@ class App extends Component {
       display: "0",
       currentNum: undefined,
       prevNum: undefined,
-      operation: undefined,
-      result: undefined
+      operation: undefined
     };
     this.handleNumber = this.handleNumber.bind(this);
     this.handleClear = this.handleClear.bind(this);
@@ -26,32 +25,47 @@ class App extends Component {
       display: "0",
       currentNum: undefined,
       prevNum: undefined,
-      operation: undefined,
-      result: undefined
+      operation: undefined
     });
   }
 
   handleOperator(e) {
     let { display, currentNum, prevNum, operation } = this.state;
     const { innerText } = e.target;
-    if (!operation) {
+    const endWithNegative = /\d[×÷+-]{1}-$/;
+    if (endWithNegative.test(display)) {
       this.setState({
-        display: display + innerText,
-        operation: e.target.id,
-        prevNum: currentNum,
-        currentNum: ""
-      });
-    } else if (operation && !currentNum) {
-      this.setState({
-        display: display.slice(0, -1) + innerText,
+        display: display.slice(0, -2) + innerText,
+        currentNum: "",
         operation: e.target.id
       });
-    } else if (operation && currentNum && prevNum) {
-      this.evaluate();
-      this.setState((state) => ({
-        display: state.display + innerText,
-        operation: e.target.id
-      }));
+    } else {
+      if (!operation) {
+        this.setState({
+          display: display + innerText,
+          operation: e.target.id,
+          prevNum: currentNum,
+          currentNum: ""
+        });
+      } else if (operation && !currentNum) {
+        if (innerText !== "-") {
+          this.setState({
+            display: display.slice(0, -1) + innerText,
+            operation: e.target.id
+          });
+        } else {
+          this.setState({
+            display: display + innerText,
+            currentNum: innerText
+          });
+        }
+      } else if (operation && currentNum && prevNum) {
+        this.evaluate();
+        this.setState((state) => ({
+          display: state.display + innerText,
+          operation: e.target.id
+        }));
+      }
     }
   }
 
@@ -105,7 +119,7 @@ class App extends Component {
   }
 
   evaluate() {
-    const { display, currentNum, prevNum, operation, result } = this.state;
+    const { display, currentNum, prevNum, operation } = this.state;
     switch (operation) {
       case "add":
         this.setState({
@@ -139,9 +153,9 @@ class App extends Component {
 
   handleEqual() {
     const { display } = this.state;
-    this.setState({
-      display: display + " "
-    });
+    this.setState((state) => ({
+      display: state.display + " "
+    }));
   }
 
   render() {

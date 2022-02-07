@@ -72,7 +72,7 @@ class Keyboard extends Component {
                         className="equals"
                         onClick={() => {
                             evaluate();
-                            // handleEqual();
+                            handleEqual();
                         }}
                     >
                         =
