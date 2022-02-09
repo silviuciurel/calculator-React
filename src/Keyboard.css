@@ -10,6 +10,9 @@
     margin: 0.3125rem;
     font-size: 1.5rem;
     cursor: pointer;
+    background-color: #505050;
+    color: white;
+    border: none;
   }
   
   button:hover {
@@ -35,3 +38,11 @@
     height: 10.625rem;
   }
   
+  .clear, .decimal {
+  background-color: #d4d4d2;
+  color: #1c1c1c;
+}
+
+#divide, #multiply, #subtract, #add, #equals {
+  background-color: #ff9500;
+}
